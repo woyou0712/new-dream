@@ -1,0 +1,229 @@
+@charset "UTF-8";
+@import url(../iconfont/iconfont.css);
+* {
+  box-sizing: border-box; }
+
+[class^="win-"][class$="-btn"] {
+  font-size: 12px;
+  border: none;
+  transition: 0.3s;
+  padding: 5px 10px;
+  border-radius: 4px; }
+  [class^="win-"][class$="-btn"] + [class^="win-"][class$="-btn"] {
+    margin-left: 10px; }
+
+[class^="win-"][class$="-btn"]:focus {
+  outline: none; }
+
+[class^="win-"][class$="-btn"]:active {
+  transform: translateY(3px); }
+
+[class^="win-"][class$="-btn"]:hover {
+  box-shadow: 0 2px 4px 0 #aaaaaa; }
+
+.win-confirm-btn {
+  background-color: #53A8FF;
+  color: #ffffff; }
+
+.win-confirm-btn:hover {
+  background-color: #409EFF;
+  color: #ffffff; }
+
+.win-cancel-btn {
+  border: 1px solid #aaaaaa !important;
+  color: #808080; }
+
+.win-cancel-btn:hover {
+  border-color: #444444;
+  color: #444444; }
+
+[class^="win-"][class$="-ipt"] {
+  border-radius: 4px;
+  border: 1px solid #dcdfe6;
+  padding: 5px 10px; }
+
+[class^="win-"][class$="-ipt"]:focus {
+  border-color: #666666;
+  outline: none; }
+
+.win-windows-box {
+  width: 0;
+  height: 0;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 2000; }
+  .win-windows-box .theme {
+    background-color: #f5f5f5;
+    color: #333333; }
+  .win-windows-box .app-shade {
+    position: fixed;
+    cursor: move;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 100000; }
+  .win-windows-box .win-win {
+    position: fixed;
+    top: 10%;
+    left: 10%;
+    background-color: #fff;
+    box-shadow: 0 2px 4px 0 rgba(100, 100, 100, 0.12), 0 0 6px 0 rgba(100, 100, 100, 0.6);
+    overflow: hidden;
+    border-radius: 5px;
+    resize: both;
+    /* 设置元素的宽度和高度均可调整 */ }
+    .win-windows-box .win-win .win-title {
+      width: 100%;
+      font-size: 16px;
+      display: flex;
+      justify-content: space-between;
+      padding-bottom: 2px;
+      align-items: center;
+      padding-left: 20px;
+      color: #666;
+      cursor: move; }
+      .win-windows-box .win-win .win-title .name {
+        cursor: default; }
+      .win-windows-box .win-win .win-title .iconfont {
+        color: #aaa;
+        display: inline-block;
+        padding: 10px;
+        cursor: pointer; }
+      .win-windows-box .win-win .win-title .iconfont:hover {
+        color: #666;
+        background-color: rgba(100, 100, 100, 0.1); }
+    .win-windows-box .win-win .win-section {
+      height: calc(100% - 50px);
+      overflow: hidden;
+      overflow-y: auto; }
+      .win-windows-box .win-win .win-section .win-iframs {
+        width: 100%;
+        height: 100%; }
+  .win-windows-box .win-win.max {
+    width: 100% !important;
+    height: 100% !important;
+    left: 0 !important;
+    top: 0 !important; }
+  .win-windows-box .win-win.min.max,
+  .win-windows-box .win-win.min {
+    width: 0 !important;
+    height: 0 !important; }
+  .win-windows-box .win-alert {
+    width: 350px;
+    border-radius: 5px;
+    overflow: hidden;
+    position: fixed;
+    top: calc(50% - 100px);
+    left: calc(50% - 175px);
+    z-index: 10001;
+    background: #ffffff;
+    box-shadow: 0 2px 4px 0 rgba(100, 100, 100, 0.12), 0 0 6px 0 rgba(100, 100, 100, 0.6);
+    font-size: 12px; }
+    .win-windows-box .win-alert .alert-title {
+      width: 100%;
+      font-size: 14px;
+      display: flex;
+      justify-content: space-between;
+      padding-bottom: 2px;
+      align-items: center;
+      padding-left: 10px;
+      color: #666;
+      cursor: move; }
+      .win-windows-box .win-alert .alert-title .name {
+        cursor: default; }
+      .win-windows-box .win-alert .alert-title .iconfont {
+        color: #aaa;
+        display: inline-block;
+        padding: 8px;
+        cursor: pointer; }
+      .win-windows-box .win-alert .alert-title .iconfont:hover {
+        color: #666;
+        background-color: rgba(100, 100, 100, 0.1); }
+    .win-windows-box .win-alert .alert-section {
+      width: 100%;
+      overflow: hidden;
+      padding: 15px 15px 0 15px;
+      font-size: 14px; }
+      .win-windows-box .win-alert .alert-section .info-text {
+        width: 100%;
+        margin: 0 0 10px 0; }
+      .win-windows-box .win-alert .alert-section .win-ipt {
+        width: 100%; }
+      .win-windows-box .win-alert .alert-section .err-text {
+        width: 100%;
+        font-size: 12px;
+        color: #F56C6C;
+        height: 16px;
+        margin: 0; }
+    .win-windows-box .win-alert .bottom-btn-box {
+      padding: 10px 15px; }
+  .win-windows-box .win-msg {
+    border: none;
+    position: fixed;
+    max-width: 300px;
+    font-size: 14px;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    padding: 10px 15px !important;
+    background-color: rgba(0, 0, 0, 0.5);
+    border-radius: 5px;
+    color: #fff; }
+
+.win-right-click {
+  position: fixed;
+  width: 150px;
+  padding: 4px 0;
+  box-shadow: 0 2px 4px 0 rgba(100, 100, 100, 0.12), 0 0 6px 0 rgba(100, 100, 100, 0.6);
+  border-radius: 4px;
+  z-index: 100000; }
+  .win-right-click .menus-item {
+    padding: 0 10px;
+    width: 100%;
+    height: 25px;
+    line-height: 25px;
+    font-size: 14px;
+    cursor: pointer; }
+  .win-right-click .menus-item:hover {
+    background-color: rgba(170, 170, 170, 0.3); }
+
+.in-regard-to-win {
+  width: 300px;
+  height: 138px;
+  box-shadow: 0 2px 4px 0 rgba(100, 100, 100, 0.12), 0 0 6px 0 rgba(100, 100, 100, 0.6);
+  background-color: #ffffff;
+  border: 1px solid #dcdfe6;
+  border-radius: 4px;
+  position: fixed;
+  z-index: 10000;
+  left: calc(50% - 150px);
+  top: calc(50% - 69px);
+  font-size: 14px; }
+  .in-regard-to-win .regard-title {
+    width: 100%;
+    padding-bottom: 2px;
+    padding-left: 10px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #eeeeee;
+    border-bottom: 1px solid #aaa;
+    cursor: default; }
+    .in-regard-to-win .regard-title .name {
+      font-weight: 700; }
+    .in-regard-to-win .regard-title .shut {
+      padding: 5px;
+      cursor: pointer; }
+    .in-regard-to-win .regard-title .shut:hover {
+      background-color: rgba(170, 170, 170, 0.3); }
+  .in-regard-to-win .regard-section {
+    padding: 0 20px; }
+    .in-regard-to-win .regard-section p {
+      margin: 14px 0; }
+    .in-regard-to-win .regard-section .qq {
+      color: #00f;
+      text-decoration: none; }
+  .in-regard-to-win .msg {
+    color: #d00; }

@@ -1,0 +1,22 @@
+{
+  "name": "new-dream",
+  "version": "1.0.2",
+  "description": "The pop-up UI component of Vue",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/woyou0712/new-dream.git"
+  },
+  "keywords": [
+    "Vue's pop-up UI component library"
+  ],
+  "author": "Kobold",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/woyou0712/new-dream/issues"
+  },
+  "homepage": "https://github.com/woyou0712/new-dream#readme"
+}
