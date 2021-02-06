@@ -1,6 +1,8 @@
 import createElement from "../js/createElement.js";
 export default function (Rclick) {
   Rclick.prototype.showMenus = function (e, config) {
+    // 初始化菜单
+    this.createMenusBox();
     // 如果没有传参，则使用默认参数
     if (!config) {
       config = this.config

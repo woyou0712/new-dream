@@ -51,27 +51,38 @@ function Win(Vue) {
   this.Vue = Vue;
   // 全局配置项
   this.config = config;
-  this.windowsBox = document.createElement("div");
-  this.windowsBox.classList.add("win-windows-box");
-  // 阻止右键默认事件
-  this.windowsBox.oncontextmenu = e => {
-    e.stopPropagation();
-    e.preventDefault();
-  };
-  // 创建遮罩层/避免鼠标拖入iframe窗口时出现卡顿现象
-  this.shade = document.createElement("div");
-  this.shade.classList.add("app-shade");
+  this.windowsBox = null;
+  this.shade = null;
 }
+
 // 获取包裹弹窗的容器
 Win.prototype.myWindows = function () {
   // 如果未挂载到页面，则先挂载
-  let isShowHtml = document.querySelector("body>.win-windows-box");
-  if (!isShowHtml) {
+  if (!this.windowsBox) {
+    this.windowsBox = document.createElement("div");
+    this.windowsBox.classList.add("win-windows-box");
+    // 阻止右键默认事件
+    this.windowsBox.oncontextmenu = e => {
+      e.stopPropagation();
+      e.preventDefault();
+    };
     document.body.appendChild(this.windowsBox);
     console.log("将容器挂载到了页面")
   }
+  this.createShade();
   return this.windowsBox;
 };
+
+Win.prototype.createShade = function () {
+  if (!this.shade) {
+    // 创建遮罩层/避免鼠标拖入iframe窗口时出现卡顿现象
+    this.shade = document.createElement("div");
+    this.shade.classList.add("win-app-shade");
+  }
+  return this.shade;
+}
+
+
 
 // 设置Zindex层
 Win.prototype.zIndex = 1000;

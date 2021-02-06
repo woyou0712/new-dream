@@ -23,14 +23,23 @@ const config = {
 
 // 构造函数
 function Rclick() {
-  this.menusBox = document.createElement("div");
-  this.menusBox.classList.add("win-right-click");
-  // 阻止右键默认事件
-  this.menusBox.oncontextmenu = e => {
-    e.stopPropagation();
-    e.preventDefault();
-  };
+  this.menusBox = null
 }
+
+Rclick.prototype.createMenusBox = function () {
+  if (!this.menusBox) {
+    this.menusBox = document.createElement("div");
+    this.menusBox.classList.add("win-right-click");
+    // 阻止右键默认事件
+    this.menusBox.oncontextmenu = e => {
+      e.stopPropagation();
+      e.preventDefault();
+    };
+  }
+}
+
+
+
 Rclick.prototype.config = config; //配置默认参数
 
 // 引入并注册显示菜的方法;
