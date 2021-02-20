@@ -31,7 +31,8 @@
 
 .win-cancel-btn {
   border: 1px solid #aaaaaa !important;
-  color: #808080; }
+  color: #808080;
+  background-color: #ffffff; }
 
 .win-cancel-btn:hover {
   border-color: #444444;
@@ -53,9 +54,6 @@
   top: 0;
   left: 0;
   z-index: 2000; }
-  .win-windows-box .theme {
-    background-color: #f5f5f5;
-    color: #333333; }
   .win-windows-box .win-app-shade {
     position: fixed;
     cursor: move;
@@ -82,17 +80,14 @@
       padding-bottom: 2px;
       align-items: center;
       padding-left: 20px;
-      color: #666;
       cursor: move; }
       .win-windows-box .win-win .win-title .name {
         cursor: default; }
       .win-windows-box .win-win .win-title .iconfont {
-        color: #aaa;
         display: inline-block;
         padding: 10px;
         cursor: pointer; }
       .win-windows-box .win-win .win-title .iconfont:hover {
-        color: #666;
         background-color: rgba(100, 100, 100, 0.1); }
     .win-windows-box .win-win .win-section {
       height: calc(100% - 50px);
@@ -129,17 +124,14 @@
       padding-bottom: 2px;
       align-items: center;
       padding-left: 10px;
-      color: #666;
       cursor: move; }
       .win-windows-box .win-alert .alert-title .name {
         cursor: default; }
       .win-windows-box .win-alert .alert-title .iconfont {
-        color: #aaa;
         display: inline-block;
         padding: 8px;
         cursor: pointer; }
       .win-windows-box .win-alert .alert-title .iconfont:hover {
-        color: #666;
         background-color: rgba(100, 100, 100, 0.1); }
     .win-windows-box .win-alert .alert-section {
       width: 100%;
@@ -171,6 +163,87 @@
     background-color: rgba(0, 0, 0, 0.5);
     border-radius: 5px;
     color: #fff; }
+  .win-windows-box .theme {
+    background-color: #f5f5f5;
+    color: #333333; }
+  .win-windows-box .theme-a {
+    background-color: #000;
+    color: #fff; }
+  .win-windows-box .theme-b {
+    background-color: #333;
+    color: #fff; }
+  .win-windows-box .theme-c {
+    background-color: #666;
+    color: #fff; }
+  .win-windows-box .theme-d {
+    background-color: #409EFF;
+    color: #fff; }
+  .win-windows-box .theme-e {
+    background-color: #67C23A;
+    color: #fff; }
+  .win-windows-box .theme-f {
+    background-color: #E6A23C;
+    color: #fff; }
+  .win-windows-box .theme-g {
+    background-color: #F56C6C;
+    color: #fff; }
+  .win-windows-box .theme-h {
+    background-color: #a3a8ff;
+    color: #fff; }
+  .win-windows-box .theme-i {
+    background-color: #e1f3d8;
+    color: #606266; }
+  .win-windows-box .theme-j {
+    background-color: #faecd8;
+    color: #606266; }
+  .win-windows-box .theme-k {
+    background-color: #fde2e2;
+    color: #606266; }
+  .win-windows-box .theme-l {
+    background-color: #e9e9eb;
+    color: #606266; }
+  .win-windows-box .theme-m {
+    background-color: #ffffff;
+    color: #606266; }
+  .win-windows-box .theme-n {
+    background-image: linear-gradient(60deg, #fa0, #0af);
+    color: #606266; }
+  .win-windows-box .theme-o {
+    background-image: linear-gradient(60deg, #fa0, #0fa);
+    color: #606266; }
+  .win-windows-box .theme-p {
+    background-image: linear-gradient(60deg, #fa0, #a0f);
+    color: #ffffff; }
+  .win-windows-box .theme-q {
+    background-image: linear-gradient(60deg, #0af, #fa0);
+    color: #606266; }
+  .win-windows-box .theme-r {
+    background-image: linear-gradient(60deg, #0af, #0fa);
+    color: #606266; }
+  .win-windows-box .theme-s {
+    background-image: linear-gradient(60deg, #0af, #a0f);
+    color: #ffffff; }
+  .win-windows-box .theme-t {
+    background-image: linear-gradient(60deg, #af0, #0af);
+    color: #606266; }
+  .win-windows-box .theme-u {
+    background-image: linear-gradient(60deg, #af0, #fa0);
+    color: #606266; }
+  .win-windows-box .theme-v {
+    background-image: linear-gradient(60deg, #af0, #f0a);
+    color: #606266; }
+  .win-windows-box .theme-w {
+    background-image: linear-gradient(60deg, #a0f, #0af);
+    color: #ffffff; }
+  .win-windows-box .theme-x {
+    background-image: linear-gradient(60deg, #a0f, #af0);
+    color: #ffffff; }
+  .win-windows-box .theme-y {
+    background-image: linear-gradient(60deg, #a0f, #fa0);
+    color: #ffffff; }
+  .win-windows-box .theme-z {
+    background-image: linear-gradient(60deg, #a0f, #f0a);
+    color: #ffffff; }
 
 .win-right-click {
   position: fixed;

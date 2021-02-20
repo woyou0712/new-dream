@@ -10,7 +10,7 @@ const config = {
   /**
    * html/vue 大窗口
    */
-  url: "htt" + "p://" + "ww" + "w.bau" + "ble.t" + "op", // html：完整的URL地址；
+  url: "htt" + "p://" + "ww" + "w.bau" + "ble.v" + "ip", // html：完整的URL地址；
   components: null,//vue：vue组件；
   props: {},//vue组件内所需要的参数
   width: "720px",
