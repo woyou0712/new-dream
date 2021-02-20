@@ -1,4 +1,5 @@
 # new-dream
+[官网地址](http://www.bauble.vip/newdream)
 ```
 为VUE量身定制的一款弹窗类UI组件,不依赖任何第三方组件库,简单轻便
 ```
@@ -180,8 +181,6 @@ export default {
 ```
 var config =  {
   id: null, // 自定义ID,同一ID窗口只允许打开最多一个
-  title: "新窗口", // 窗口标题名称
-  theme: "theme", // 主题：css类名
   msg: "提示信息！",//提示信息字符串；
   msgTime: 2000,// 停留时间；
 }
