@@ -42,8 +42,7 @@ export default function (Win) {
     }
     // 右侧按钮
     let btns = createElement("div", "btn-box");
-    let shutBtn = createElement("span", ["iconfont", "shut"]);//关闭按钮
-    shutBtn.innerHTML = "&#xe659;";
+    let shutBtn = createElement("span", ["iconfont", "shut", "icon-guanbi1"]);//关闭按钮
     // 关闭窗口
     shutBtn.onclick = () => {
       var callback = typeof config.shut == "function" ? config.shut : this.config.shut;

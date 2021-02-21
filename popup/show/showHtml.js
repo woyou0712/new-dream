@@ -56,8 +56,7 @@ export default function (Win) {
     let btns = createElement("div", "btn-box");
     // 判断配置,是否需要显示最小化按钮
     if (config.showMin || (this.config.showMin && config.showMin !== false)) {
-      let minBtn = createElement("span", "iconfont");//第一个,最小化
-      minBtn.innerHTML = "&#xe664;";
+      let minBtn = createElement("span", ["iconfont", "icon-minimum"]);//第一个,最小化
       // 窗口最小化
       minBtn.onclick = () => {
         appBox.classList.add("min");//窗口最小化
@@ -73,15 +72,16 @@ export default function (Win) {
     }
     // 判断配置项，是否需要显示最大化按钮
     if (config.showMax || (this.config.showMax && config.showMax !== false)) {
-      let maxBtn = createElement("span", "iconfont");//第二个,最大化
-      maxBtn.innerHTML = "&#xe6cc;";
+      let maxBtn = createElement("span", ["iconfont", "icon-xueyuan-quanping"]);//第二个,最大化
       // 窗口最大化
       maxBtn.onclick = () => {
         var isMax = appBox.classList.toggle("max");//切换窗口最大化 toggle:存在则删除,不存在则添加
         if (isMax) {
-          maxBtn.innerHTML = "&#xec13;"
+          maxBtn.classList.remove("icon-xueyuan-quanping")
+          maxBtn.classList.add("icon-quanping")
         } else {
-          maxBtn.innerHTML = "&#xe6cc;"
+          maxBtn.classList.remove("icon-quanping")
+          maxBtn.classList.add("icon-xueyuan-quanping")
         }
         //调用回调函数
         if (typeof config.max == "function") {
@@ -94,8 +94,7 @@ export default function (Win) {
     }
 
 
-    let shutBtn = createElement("span", ["iconfont", "shut"]);//关闭按钮
-    shutBtn.innerHTML = "&#xe659;";
+    let shutBtn = createElement("span", ["iconfont", "shut", "icon-guanbi1"]);//关闭按钮
     // 关闭窗口
     shutBtn.onclick = () => {
       var callback = typeof config.shut == "function" ? config.shut : this.config.shut;
