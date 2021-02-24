@@ -251,6 +251,25 @@ this.$popup.restore(appid,function(){});
 // 传入一个id数组 (回调函数非必传)
 this.$popup.restore([appid1,appid2,...],function(){});
 ```
+### 窗口嵌套
+- 在窗口内部弹窗
+- 外层窗口必须指定ID
+- 外层窗口必须为根窗口, 嵌套窗口内部不允许再次嵌套窗口
+- 内层弹窗指定属性fatherId:外层窗口ID
+```
+<!-- 外层窗口 -->
+this.$popup.vue({
+  id: "vue-nested",
+  title: "内部嵌套弹窗",
+  components: vueComponent,
+});
+
+<!-- 内层窗口 -->
+this.$popup.html({
+  url: "http://win10.bauble.top",
+  fatherId: "vue-nested",
+});
+```
 ### 修改全局默认配置
 - main.js
 ```
