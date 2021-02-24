@@ -1,18 +1,25 @@
 import drag from "../drag.js";
 import createElement from "../../js/createElement.js";
+import getTopLeft from "../getTopLeft.js";
+
 export default function (Win) {
 
   // 初始化一个应用弹窗(iframe或者VUE组件)
   Win.prototype.__initWindow = function (config) {
-    let myWindows = this.myWindows();
     // 获取appid
     let appid = this.getAppid(config);
     if (!appid) {
       return false
     }
-
+    // 获取外层窗口ID
+    let fatherId = config.fatherId ? config.fatherId : this.config.fatherId;
+    let myWindows = this.myWindows(fatherId);
+    if (!myWindows) { return }
     // 创建APP容器
     let appBox = createElement("div", "win-win", appid)
+    if (fatherId) {
+      appBox.style.position = "absolute"
+    }
     // 设置zindex 层级
     this.addZindex(appBox, config);
     // 计算宽高
@@ -20,12 +27,10 @@ export default function (Win) {
     let height = config.height ? config.height : this.config.height;
     appBox.style["width"] = width;
     appBox.style["height"] = height;
-    // 计算left和top
-    let left = `calc(50% - ${parseInt(width) / 2}px)`;
-    let top = `calc(50% - ${parseInt(height) / 2}px)`;
+    let { left, top } = getTopLeft(width, height, myWindows, fatherId)
     appBox.style["left"] = left;
     appBox.style["top"] = top;
-
+    // 点击置顶
     appBox.addEventListener("click", e => {
       e.stopPropagation();
       this.addZindex(appBox, config);
@@ -41,8 +46,8 @@ export default function (Win) {
       e.stopPropagation();
       // 置顶 并且调用回调函数
       this.addZindex(appBox, config);
-      // 移动拖拽(当前点击的元素，要移动的元素，遮罩层，移动元素所在区域)
-      drag(e, appBox, this.shade, myWindows)
+      // 移动拖拽(当前点击的元素，要移动的元素，遮罩层，移动元素所在区域, 外层窗口ID)
+      drag(e, appBox, this.shade, myWindows, fatherId)
     };
     // 左侧应用名称
     let name = createElement("div", "name");
@@ -126,7 +131,9 @@ export default function (Win) {
 
   // 创建一个iframe弹窗
   Win.prototype.html = function (config) {
-    if (!config) { config = {} }
+    if (!config) {
+      config = {}
+    }
     let initWindow = this.__initWindow(config);//初始化数据
     if (!initWindow) {
       return
@@ -148,10 +155,14 @@ export default function (Win) {
   }
   // 创建一个VUE组件弹窗
   Win.prototype.vue = function (config) {
-    if (!config) { config = {} }
+    if (!config) {
+      config = {}
+    }
     // 获取组件
     let components = config.components ? config.components : this.config.components;
-    if (!components) { return }
+    if (!components) {
+      return
+    }
     let initWindow = this.__initWindow(config);//初始化数据
     if (!initWindow) {
       return

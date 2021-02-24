@@ -6,7 +6,7 @@ const config = {
   id: null, // 自定义固定ID,固定ID窗口只允许打开最多一个
   title: "新窗口", // 应用名称
   theme: "theme", // 主题：css类名
-
+  fatherId: null, // 父窗口ID
   /**
    * html/vue 大窗口
    */
@@ -18,11 +18,21 @@ const config = {
   showMin: true, // 是否显示 窗口最小化
   showMax: true, // 是否显示 窗口最大化
   showMinList: true, // 是否显示 窗口最小化列表
-  open(appid) { return appid }, // 打开窗口的回调函数
-  shut(appid) { return appid }, // 关闭窗口回调函数
-  top(appid) { return appid }, // 窗口置顶回调函数
-  min(appid) { return appid }, // 窗口最小化回调函数
-  max(appid, isMax) { return { appid, isMax } }, // 窗口最大化回调函数
+  open(appid) {
+    return appid
+  }, // 打开窗口的回调函数
+  shut(appid) {
+    return appid
+  }, // 关闭窗口回调函数
+  top(appid) {
+    return appid
+  }, // 窗口置顶回调函数
+  min(appid) {
+    return appid
+  }, // 窗口最小化回调函数
+  max(appid, isMax) {
+    return { appid, isMax }
+  }, // 窗口最大化回调函数
 
   /**
    * 轻提示 ， 确认框等小提示
@@ -42,10 +52,15 @@ const config = {
   inputError: "输入格式不规范！",//输入框验证不合格提示
 
   confirmName: "确定",// 确定按钮文字
-  confirm(appid, value) { return { appid, value } }, // 点击确定回调函数
+  confirm(appid, value) {
+    return { appid, value }
+  }, // 点击确定回调函数
   cancelName: "取消", // 取消按钮文字
-  cancel(appid) { return appid },// 点击取消的回调函数
+  cancel(appid) {
+    return appid
+  },// 点击取消的回调函数
 }
+
 /**创建构造函数 */
 function Win(Vue) {
   this.Vue = Vue;
@@ -56,7 +71,17 @@ function Win(Vue) {
 }
 
 // 获取包裹弹窗的容器
-Win.prototype.myWindows = function () {
+Win.prototype.myWindows = function (fatherId) {
+  // 如果存在fatherId，则获取父窗口的内容区域作为winBox
+  if (fatherId) {
+    // 最多只能套一层，禁止无限套娃
+    let body = document.querySelector(`.win-windows-box > #${fatherId} > .win-section`)
+    if (body) {
+      return body
+    }
+    console.error("指定父窗口不存在 或者 父窗口不是根窗口")
+    return false
+  }
   // 如果未挂载到页面，则先挂载
   if (!this.windowsBox) {
     this.windowsBox = document.createElement("div");
@@ -67,7 +92,6 @@ Win.prototype.myWindows = function () {
       e.preventDefault();
     };
     document.body.appendChild(this.windowsBox);
-    console.log("将容器挂载到了页面")
   }
   this.createShade();
   return this.windowsBox;
@@ -83,7 +107,6 @@ Win.prototype.createShade = function () {
 }
 
 
-
 // 设置Zindex层
 Win.prototype.zIndex = 1000;
 Win.prototype.addZindex = function (element, config) {
@@ -93,7 +116,9 @@ Win.prototype.addZindex = function (element, config) {
   }
   this.zIndex += 1;
   element.style["z-index"] = this.zIndex;
-  if (!config) { return }
+  if (!config) {
+    return
+  }
   if (typeof config.top == "function") {
     config.top(element.id);
   } else {
@@ -103,7 +128,9 @@ Win.prototype.addZindex = function (element, config) {
 // 设置ID,每个窗口都有不一样的ID
 Win.prototype.id = 0;
 Win.prototype.getAppid = function (config) {
-  if (!config) { config = {} }
+  if (!config) {
+    config = {}
+  }
   this.id += 1;
   // 得到即将要打开的窗口ID
   let appid = config.id ? config.id : `win-${this.id}-app`;
@@ -129,21 +156,15 @@ Win.prototype.shutWin = function (appids, callback) {
   }
   // 只关闭一个:可以直接传ID
   if (typeof appids == "string") {
-    let app = document.getElementById(appids);
-    if (app) {
-      this.windowsBox.removeChild(app)
-      if (typeof callback == "function") {
-        callback(appids);
-      }
-    }
-    return
+    appids = [appids]
   }
   // 关闭多个:ID数组
   if (Array.isArray(appids) && appids.length) {
     for (var item of appids) {
       let app = document.getElementById(item);
       if (app) {
-        this.windowsBox.removeChild(app)
+        let parent = app.parentNode;
+        parent.removeChild(app)
       }
     }
     if (typeof callback == "function") {
@@ -157,7 +178,7 @@ Win.prototype.shutWin = function (appids, callback) {
 Win.prototype.restore = function (appids, callback) {
   // 如果:不传参数 或者 只传一个回调函数 则是恢复全部最小化的窗口
   if (!appids || typeof appids == "function") {
-    let minWins = [...document.querySelectorAll(".win-windows-box>.min")];
+    let minWins = [...document.querySelectorAll(".win-win.min")];
     for (var item of minWins) {
       item.classList.remove("min")
     }
@@ -190,12 +211,15 @@ Win.prototype.restore = function (appids, callback) {
 
 // 注册页面弹窗
 import showHtml from "./show/showHtml.js";
+
 showHtml(Win);
 // 注册轻提示弹窗
 import showMsg from "./show/showMsg.js";
+
 showMsg(Win);
 // 注册确认提示框
 import showAlert from "./show/showAlert.js";
+
 showAlert(Win);
 
 const install = (Vue) => {
@@ -210,7 +234,9 @@ const install = (Vue) => {
     methods: {
       // 打开iframe网页
       html(config) {
-        if (!config) { config = {} }
+        if (!config) {
+          config = {}
+        }
         if (typeof config == "string") {
           config = { url: config }
         }
@@ -218,7 +244,9 @@ const install = (Vue) => {
       },
       // 打开Vue组件
       vue(config, props) {
-        if (!config) { config = {} }
+        if (!config) {
+          config = {}
+        }
         // 如果传入的直接就是组件，则包装一层
         if (typeof config.__file == "string") {
           config = { components: config, props }

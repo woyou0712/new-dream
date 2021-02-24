@@ -1,6 +1,6 @@
 {
   "name": "new-dream",
-  "version": "1.0.31",
+  "version": "1.1.0",
   "description": "The pop-up UI component of Vue",
   "main": "index.js",
   "scripts": {

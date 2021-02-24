@@ -49,7 +49,7 @@ showMenus(Rclick)
 
 /**为当前元素添加右键事件 */
 Rclick.prototype.click = function (e, config) {
-  if (!e || !e.target || isNaN(e.clientX) || isNaN(e.clientY)) { console.log("第一个参数必须是event"); return }
+  if (!e || !e.target || isNaN(e.clientX) || isNaN(e.clientY)) { console.error("第一个参数必须是event"); return }
   e.stopPropagation();//停止冒泡
   e.preventDefault();//阻止默认事件
   this.showMenus(e, config)

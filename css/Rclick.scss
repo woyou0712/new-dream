@@ -1,0 +1,64 @@
+.win-right-click{
+  position: fixed;
+  width: 150px;
+  padding: 4px 0;
+  box-shadow: $boxShadow;
+  border-radius: 4px;
+  z-index: 100000;
+  .menus-item{
+    padding: 0 10px;
+    width: 100%;
+    height: 25px;
+    line-height: 25px;
+    font-size: 14px;
+    cursor: pointer;
+  }
+  .menus-item:hover{
+    background-color: rgba($color: #aaa, $alpha: .3);
+  }
+}
+.in-regard-to-win{
+  width: 300px;
+  height: 138px;
+  box-shadow: $boxShadow;
+  background-color: #ffffff;
+  border: $border;
+  border-radius: 4px;
+  position: fixed;
+  z-index: 10000;
+  left:calc(50% - 150px);
+  top: calc(50% - 69px);
+  font-size: 14px;
+  .regard-title{
+    width: 100%;
+    padding-bottom: 2px;
+    padding-left: 10px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #eeeeee;
+    border-bottom: 1px solid #aaa;
+    cursor: default;
+    .name{
+      font-weight: 700;
+    }
+    .shut{
+      padding: 5px;
+      cursor: pointer;
+    }
+    .shut:hover{
+      background-color: rgba($color: #aaa, $alpha: .3);
+    }
+  }
+  .regard-section{
+    padding: 0 20px;
+    p{margin: 14px 0; }
+    .qq{
+      color: #00f;
+      text-decoration: none;
+    }
+  }
+  .msg{
+    color: #d00;
+  }
+}

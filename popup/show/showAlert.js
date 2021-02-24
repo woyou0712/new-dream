@@ -1,18 +1,31 @@
 import drag from "../drag.js";
 import createElement from "../../js/createElement.js";
+import getTopLeft from "@/newDream/popup/getTopLeft";
+
 export default function (Win) {
   // 初始化一个应用弹窗(iframe或者VUE组件)
   Win.prototype.__initAlert = function (config) {
-    let myWindows = this.myWindows();
     // 获取appid
     let appid = this.getAppid(config);
     if (!appid) {
       return false
     }
+    // 获取外层窗口ID
+    let fatherId = config.fatherId ? config.fatherId : this.config.fatherId;
+    let myWindows = this.myWindows(fatherId);
+    if (!myWindows) { return }
     // 创建APP容器
     let appBox = createElement("div", "win-alert", appid)
+    if (fatherId) {
+      appBox.style.position = "absolute"
+    }
     // 设置zindex 层级
     this.addZindex(appBox, config);
+    let width = 350;
+    let { left, top } = getTopLeft(width, 300, myWindows, fatherId)
+    appBox.style["width"] = `${width}px`;
+    appBox.style["left"] = left;
+    appBox.style["top"] = top;
     // 点击置顶
     appBox.addEventListener("click", e => {
       e.stopPropagation();
@@ -30,7 +43,7 @@ export default function (Win) {
       // 置顶 并且调用回调函数
       this.addZindex(appBox, config);
       // 移动拖拽(当前点击的元素，要移动的元素，遮罩层，移动元素所在区域)
-      drag(e, appBox, this.shade, myWindows)
+      drag(e, appBox, this.shade, myWindows, fatherId)
     };
     // 左侧应用名称
     let name = createElement("div", "name");
@@ -79,7 +92,9 @@ export default function (Win) {
   }
   // 弹窗alert提示框
   Win.prototype.alert = function (config) {
-    if (!config) { config = {} }
+    if (!config) {
+      config = {}
+    }
     let initWindow = this.__initAlert(config);//初始化数据
     if (!initWindow) {
       return
@@ -113,7 +128,9 @@ export default function (Win) {
   }
   // 弹窗输入框
   Win.prototype.prompt = function (config) {
-    if (!config) { config = {} }
+    if (!config) {
+      config = {}
+    }
     let initWindow = this.__initAlert(config);//初始化数据
     if (!initWindow) {
       return
@@ -145,7 +162,7 @@ export default function (Win) {
       section.appendChild(errElement);
     }
     let errText = config.inputError ? config.inputError : this.config.inputError;//获取输入错误提示
-    // 
+    //
     input.addEventListener("input", (e) => {
       value = e.target.value;
       // 验证正则
