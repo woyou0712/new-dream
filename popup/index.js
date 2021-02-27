@@ -166,6 +166,12 @@ Win.prototype.shutWin = function (appids, callback) {
         let parent = app.parentNode;
         parent.removeChild(app)
       }
+      // 尝试获取最小化列表标签并关闭
+      let mins = document.getElementById(`min-${item}`);
+      if (mins) {
+        let parent = mins.parentNode;
+        parent.removeChild(mins)
+      }
     }
     if (typeof callback == "function") {
       callback(appids);
@@ -181,6 +187,7 @@ Win.prototype.restore = function (appids, callback) {
     let minWins = [...document.querySelectorAll(".win-win.min")];
     for (var item of minWins) {
       item.classList.remove("min")
+      this.shutWin(`min-${item.id}`)
     }
     if (typeof appids == "function") {
       appids();
@@ -189,18 +196,15 @@ Win.prototype.restore = function (appids, callback) {
   }
   // 恢复一个指定窗口
   if (typeof appids == "string") {
-    let minWin = document.getElementById(appids);
-    minWin.classList.remove("min")
-    if (typeof callback == "function") {
-      callback();
-    }
-    return
+    appids = [appids]
   }
   // 恢复多个指定窗口
   if (Array.isArray(appids) && appids.length) {
     for (var appid of appids) {
       let minWin = document.getElementById(appid);
       minWin.classList.remove("min")
+      // 并删除最小化标签
+      this.shutWin(`min-${appid}`)
     }
     if (typeof callback == "function") {
       callback();
@@ -208,7 +212,9 @@ Win.prototype.restore = function (appids, callback) {
     return
   }
 }
-
+// 注册最小化窗口列表
+import minList from "./minList.js";
+minList(Win);
 // 注册页面弹窗
 import showHtml from "./show/showHtml.js";
 

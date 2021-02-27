@@ -1,6 +1,7 @@
 import drag from "../drag.js";
 import createElement from "../../js/createElement.js";
 import getTopLeft from "@/newDream/popup/getTopLeft";
+import shutSvg from "../../svg/shutSvg.js";
 
 export default function (Win) {
   // 初始化一个应用弹窗(iframe或者VUE组件)
@@ -55,7 +56,8 @@ export default function (Win) {
     }
     // 右侧按钮
     let btns = createElement("div", "btn-box");
-    let shutBtn = createElement("span", ["iconfont", "shut", "icon-guanbi1"]);//关闭按钮
+    let shutBtn = createElement("span", "win-icon");//关闭按钮
+    shutBtn.innerHTML = shutSvg;
     // 关闭窗口
     shutBtn.onclick = () => {
       var callback = typeof config.shut == "function" ? config.shut : this.config.shut;

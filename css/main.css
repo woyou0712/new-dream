@@ -1,5 +1,4 @@
 @charset "UTF-8";
-@import url(../iconfont/iconfont.css);
 * {
   box-sizing: border-box; }
 
@@ -72,7 +71,6 @@
     /* 设置元素的宽度和高度均可调整 */ }
     .win-windows-box .win-win .win-title {
       width: 100%;
-      font-size: 16px;
       display: flex;
       justify-content: space-between;
       padding-bottom: 2px;
@@ -81,11 +79,13 @@
       cursor: move; }
       .win-windows-box .win-win .win-title .name {
         cursor: default; }
-      .win-windows-box .win-win .win-title .iconfont {
+      .win-windows-box .win-win .win-title .win-icon {
+        width: 36px;
+        height: 36px;
         display: inline-block;
         padding: 10px;
         cursor: pointer; }
-      .win-windows-box .win-win .win-title .iconfont:hover {
+      .win-windows-box .win-win .win-title .win-icon:hover {
         background-color: rgba(100, 100, 100, 0.1); }
     .win-windows-box .win-win .win-section {
       height: calc(100% - 50px);
@@ -104,6 +104,32 @@
   .win-windows-box .win-win.min {
     width: 0 !important;
     height: 0 !important; }
+  .win-windows-box .win-min-list {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    display: flex;
+    padding: 0 5px 5px 5px; }
+    .win-windows-box .win-min-list .min-item {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding-bottom: 5px;
+      border: 1px solid #dcdfe6; }
+      .win-windows-box .win-min-list .min-item + .min-item {
+        margin-left: 5px; }
+      .win-windows-box .win-min-list .min-item .min-name {
+        width: 100px;
+        padding-left: 10px;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis; }
+      .win-windows-box .win-min-list .min-item .win-icon {
+        width: 36px;
+        height: 36px;
+        padding: 10px; }
+      .win-windows-box .win-min-list .min-item .win-icon:hover {
+        background-color: rgba(100, 100, 100, 0.1); }
   .win-windows-box .win-alert {
     border-radius: 5px;
     overflow: hidden;
@@ -123,11 +149,13 @@
       cursor: move; }
       .win-windows-box .win-alert .alert-title .name {
         cursor: default; }
-      .win-windows-box .win-alert .alert-title .iconfont {
+      .win-windows-box .win-alert .alert-title .win-icon {
+        width: 32px;
+        height: 32px;
         display: inline-block;
         padding: 8px;
         cursor: pointer; }
-      .win-windows-box .win-alert .alert-title .iconfont:hover {
+      .win-windows-box .win-alert .alert-title .win-icon:hover {
         background-color: rgba(100, 100, 100, 0.1); }
     .win-windows-box .win-alert .alert-section {
       width: 100%;

@@ -1,6 +1,7 @@
 import drag from "../drag.js";
 import createElement from "../../js/createElement.js";
 import getTopLeft from "../getTopLeft.js";
+import Svg from "../../svg/index.js";
 
 export default function (Win) {
 
@@ -51,7 +52,8 @@ export default function (Win) {
     };
     // 左侧应用名称
     let name = createElement("div", "name");
-    name.innerText = config.title ? config.title : this.config.title;//添加标题
+    config.title = config.title ? config.title : this.config.title;// 获取标题
+    name.innerText = config.title;// 添加标题
     name.onmousedown = e => {
       e.stopPropagation();
       // 置顶 并且调用回调函数
@@ -61,10 +63,15 @@ export default function (Win) {
     let btns = createElement("div", "btn-box");
     // 判断配置,是否需要显示最小化按钮
     if (config.showMin || (this.config.showMin && config.showMin !== false)) {
-      let minBtn = createElement("span", ["iconfont", "icon-minimum"]);//第一个,最小化
+      let minBtn = createElement("span", "win-icon");//第一个,最小化
+      minBtn.innerHTML = Svg.minSvg
       // 窗口最小化
       minBtn.onclick = () => {
         appBox.classList.add("min");//窗口最小化
+        /**如果启用了最小化列表 */
+        if (this.config.showMinList) {
+          this.addMinList(myWindows, appid, config.title, fatherId)
+        }
         //调用回调函数
         if (typeof config.min == "function") {
           config.min(appid);
@@ -77,16 +84,15 @@ export default function (Win) {
     }
     // 判断配置项，是否需要显示最大化按钮
     if (config.showMax || (this.config.showMax && config.showMax !== false)) {
-      let maxBtn = createElement("span", ["iconfont", "icon-xueyuan-quanping"]);//第二个,最大化
+      let maxBtn = createElement("span", "win-icon");//第二个,最大化
+      maxBtn.innerHTML = Svg.maxSvg
       // 窗口最大化
       maxBtn.onclick = () => {
         var isMax = appBox.classList.toggle("max");//切换窗口最大化 toggle:存在则删除,不存在则添加
         if (isMax) {
-          maxBtn.classList.remove("icon-xueyuan-quanping")
-          maxBtn.classList.add("icon-quanping")
+          maxBtn.innerHTML = Svg.shutMaxSvg
         } else {
-          maxBtn.classList.remove("icon-quanping")
-          maxBtn.classList.add("icon-xueyuan-quanping")
+          maxBtn.innerHTML = Svg.maxSvg
         }
         //调用回调函数
         if (typeof config.max == "function") {
@@ -99,7 +105,8 @@ export default function (Win) {
     }
 
 
-    let shutBtn = createElement("span", ["iconfont", "shut", "icon-guanbi1"]);//关闭按钮
+    let shutBtn = createElement("span", "win-icon");//关闭按钮
+    shutBtn.innerHTML = Svg.shutSvg
     // 关闭窗口
     shutBtn.onclick = () => {
       var callback = typeof config.shut == "function" ? config.shut : this.config.shut;

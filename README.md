@@ -275,6 +275,8 @@ this.$popup.html({
 ```
 Vue.prototype.$popup.config.title = "新窗口"; // 打开窗口默认名称
 Vue.prototype.$popup.config.theme = "theme"; // 窗口默认主题类名
+Vue.prototype.$popup.config.showMinList = true; // 是否在屏幕下方显示最小化的窗口列表
+
 
 Vue.prototype.$popup.config.url = "win10.bauble.top"; // 默认iframe地址
 Vue.prototype.$popup.config.components = components:Object;// 默认打开的VUE组件
