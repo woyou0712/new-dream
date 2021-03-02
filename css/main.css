@@ -52,7 +52,7 @@
   position: fixed;
   top: 0;
   left: 0;
-  z-index: 2000; }
+  z-index: 1888; }
   .win-windows-box .win-app-shade {
     position: fixed;
     cursor: move;
@@ -60,7 +60,7 @@
     left: 0;
     width: 100%;
     height: 100%;
-    z-index: 100000; }
+    z-index: 10000; }
   .win-windows-box .win-win {
     position: fixed;
     background-color: #fff;
@@ -86,7 +86,7 @@
         padding: 10px;
         cursor: pointer; }
       .win-windows-box .win-win .win-title .win-icon:hover {
-        background-color: rgba(100, 100, 100, 0.1); }
+        background-color: rgba(100, 100, 100, 0.15); }
     .win-windows-box .win-win .win-section {
       height: calc(100% - 50px);
       overflow: hidden;
@@ -109,15 +109,15 @@
     bottom: 0;
     left: 0;
     display: flex;
-    padding: 0 5px 5px 5px; }
+    cursor: default; }
     .win-windows-box .win-min-list .min-item {
       display: flex;
       justify-content: space-between;
       align-items: center;
-      padding-bottom: 5px;
-      border: 1px solid #dcdfe6; }
+      padding: 3px;
+      background: rgba(100, 100, 100, 0.15); }
       .win-windows-box .win-min-list .min-item + .min-item {
-        margin-left: 5px; }
+        margin-left: 3px; }
       .win-windows-box .win-min-list .min-item .min-name {
         width: 100px;
         padding-left: 10px;
@@ -127,9 +127,10 @@
       .win-windows-box .win-min-list .min-item .win-icon {
         width: 36px;
         height: 36px;
-        padding: 10px; }
+        padding: 10px;
+        cursor: pointer; }
       .win-windows-box .win-min-list .min-item .win-icon:hover {
-        background-color: rgba(100, 100, 100, 0.1); }
+        background-color: rgba(100, 100, 100, 0.15); }
   .win-windows-box .win-alert {
     border-radius: 5px;
     overflow: hidden;
@@ -156,7 +157,7 @@
         padding: 8px;
         cursor: pointer; }
       .win-windows-box .win-alert .alert-title .win-icon:hover {
-        background-color: rgba(100, 100, 100, 0.1); }
+        background-color: rgba(100, 100, 100, 0.15); }
     .win-windows-box .win-alert .alert-section {
       width: 100%;
       overflow: hidden;
@@ -275,7 +276,7 @@
   padding: 4px 0;
   box-shadow: 0 2px 4px 0 rgba(100, 100, 100, 0.12), 0 0 6px 0 rgba(100, 100, 100, 0.6);
   border-radius: 4px;
-  z-index: 100000; }
+  z-index: 1999; }
   .win-right-click .menus-item {
     padding: 0 10px;
     width: 100%;

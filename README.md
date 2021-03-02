@@ -22,7 +22,7 @@ Vue.use(newDream);
 #### 弹窗(popup)
 ```
 import popup from "new-dream/popup/index.js";
-Vue.use(popup);
+Vue.prototype.$popup = popup;
 ```
 
 #### 右键(Rclick)

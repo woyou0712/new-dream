@@ -1,5 +1,10 @@
 /**
- * 拖拽方法,e:触发事件的元素,appBox:APP窗口元素, shade:遮罩层, myWindows:当前窗口所在的区域，fatherId：外层窗口ID
+ * 拖拽方法
+ * @param {Element} e 触发事件的元素
+ * @param {Element} appBox APP窗口元素
+ * @param {Element} shade 遮罩层
+ * @param {Element} myWindows 当前窗口所在的容器
+ * @param {Element} fatherId 外层窗口ID
  *  */
 
 export default function (e, appBox, shade, myWindows, fatherId) {

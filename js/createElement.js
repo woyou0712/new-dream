@@ -1,10 +1,10 @@
-/**创建元素 */
+/**
+ * 创建元素
+ * @param {String} ename 标签名称
+ * @param {String,Array} classList 类名、类名列表
+ * @param {String} eid 元素ID
+ * */
 export default function (ename, classList, eid) {
-  /**
-   * ename:元素名称例如"div"
-   * classList:为元素添加的类名称数组
-   * eid:为元素添加的ID
-   */
   var el = document.createElement(ename);
   if (typeof classList == "string") {
     el.classList.add(classList);

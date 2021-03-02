@@ -1,7 +1,11 @@
 /**
  * 计算左右元素所在位置
+ * @param {String} width 窗口宽度
+ * @param {String} height 窗口高度
+ * @param {Element} myWindows 盒子元素
+ * @param {String} fatherId 父盒子ID
  * */
-module.exports = function (width, height, myWindows, fatherId) {
+export default function (width, height, myWindows, fatherId) {
   // 获取窗口宽度
   let winWidth, winHeight;
   if (window.innerWidth)

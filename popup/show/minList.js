@@ -1,13 +1,14 @@
-import createElement from "../js/createElement.js";
-import restoreSvg from "../svg/restoreSvg.js";
+import createElement from "../../js/createElement.js";
+import restoreSvg from "../../svg/restoreSvg.js";
 /**
- * 
- * @param {Win} Win 
+ *
+ * @param {Win} Win
  */
 export default function (Win) {
   /**
    * 创建最小化列表项
-   * @param {Element} windowsBox
+   * @param {Element} windowsBox 窗口所在盒子容器
+   * @param {String} fatherId 外层窗口ID
    */
   Win.prototype.minList = function (windowsBox, fatherId) {
     let styleSelect = `.win-windows-box>.win-min-list`
@@ -26,11 +27,11 @@ export default function (Win) {
     return list
   }
   /**
-   * 
-   * @param {Elenent} windowsBox 
-   * @param {String} appid 
-   * @param {String} title 
-   * @param {String} fatherId 
+   * 添加最小化窗口到列表
+   * @param {Elenent} windowsBox
+   * @param {String} appid
+   * @param {String} title
+   * @param {String} fatherId
    */
   Win.prototype.addMinList = function (windowsBox, appid, title, fatherId) {
     let minList = this.minList(windowsBox, fatherId);

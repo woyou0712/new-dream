@@ -1,4 +1,8 @@
-import createElement from "../js/createElement.js";
+import createElement from "../../js/createElement.js";
+/**
+ * 设置菜选项并显示
+ * @param {Rclick} Rclick
+ * */
 export default function (Rclick) {
   Rclick.prototype.showMenus = function (e, config) {
     // 初始化菜单
@@ -63,7 +67,5 @@ export default function (Rclick) {
     this.menusBox.style.backgroundColor = config.backgroundColor ? config.backgroundColor : this.config.backgroundColor;
     // 将菜单挂在到DOM树上
     document.body.appendChild(this.menusBox);
-
-
   }
 }
