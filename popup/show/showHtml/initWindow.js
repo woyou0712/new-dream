@@ -1,7 +1,7 @@
-import createElement from "@/newDream/js/createElement";
-import getTopLeft from "@/newDream/popup/method/getTopLeft";
-import drag from "@/newDream/popup/method/drag";
-import Svg from "@/newDream/svg";
+import createElement from "../../../js/createElement";
+import getTopLeft from "../../method/getTopLeft";
+import drag from "../../method/drag";
+import Svg from "../../../svg/index";
 /**
  * 初始化一个HTML窗口
  * @param {Object} config 配置项

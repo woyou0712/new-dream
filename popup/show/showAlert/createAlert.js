@@ -1,4 +1,4 @@
-import createElement from "@/newDream/js/createElement";
+import createElement from "../../../js/createElement";
 
 /**
  * 创建一个alert弹窗
