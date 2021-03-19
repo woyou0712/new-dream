@@ -1,13 +1,11 @@
 import Vue from "vue"
 import config from "./config";
 /**
- * 创建构造函数
- * @param {Vue} Vue
+ * 创建构造函数和基础公共属性
  * */
-export default function () {
-  this.Vue = Vue;
-  // 全局配置项
-  this.config = config;
-  this.windowsBox = null;
-  this.shade = null;
-}
+ function Win() {}
+ Win.prototype.config = config;
+ Win.prototype.Vue = Vue;
+ Win.prototype.windowsBox = null;
+ Win.prototype.shade = null;
+ export default Win

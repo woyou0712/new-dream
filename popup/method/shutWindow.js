@@ -6,7 +6,9 @@
 export default function (appids, callback) {
   // 如果:不传参数 或者 只传一个回调函数 则是全部关闭
   if (!appids || typeof appids == "function") {
-    this.windowsBox.innerHTML = "";
+    if (this.windowsBox) {
+      this.windowsBox.innerHTML = "";
+    }
     if (typeof appids == "function") {
       appids();
     }

@@ -25,11 +25,6 @@ import popup from "new-dream/popup/index.js";
 Vue.prototype.$popup = popup;
 ```
 
-#### 右键(Rclick)
-```
-import Rclick from "new-dream/Rclick/index.js";
-Vue.use(Rclick);
-```
 
 # 开始使用
 ## 弹窗(popup)
