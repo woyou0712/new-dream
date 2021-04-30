@@ -32,8 +32,8 @@ export default function (config) {
   appBox.style["left"] = left;
   appBox.style["top"] = top;
   // 点击置顶
-  appBox.addEventListener("click", e => {
-    e.stopPropagation();
+  appBox.addEventListener("click", () => {
+    // e.stopPropagation(); // 停止冒泡
     this.setZindex(appBox, config);
   })
 
@@ -123,8 +123,8 @@ export default function (config) {
   appBox.appendChild(title)
   // 内容区域
   let section = createElement("section", "win-section");
-  section.onmousedown = e => {
-    e.stopPropagation();
+  section.onmousedown = () => {
+    // e.stopPropagation(); // 停止冒泡
     // 置顶 并且调用回调函数
     this.setZindex(appBox, config);
   }
