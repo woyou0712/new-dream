@@ -22,6 +22,7 @@ export default function (e, appBox, shade, myWindows, fatherId) {
     }
     let left = windowX - e.offsetX;
     let top = windowY - e.offsetY;
+    if (top < 0) { top = 0 }
     appBox.style.left = left + 'px';
     appBox.style.top = top + 'px';
   }

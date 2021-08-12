@@ -44,7 +44,7 @@ export default function (config) {
   // 鼠标按下事件
   title.onmousedown = (e) => {
     // 停止冒泡
-    e.stopPropagation();
+    // e.stopPropagation();
     // 置顶 并且调用回调函数
     this.setZindex(appBox, config);
     // 移动拖拽(当前点击的元素，要移动的元素，遮罩层，移动元素所在区域, 外层窗口ID)
@@ -55,6 +55,7 @@ export default function (config) {
   config.title = config.title ? config.title : this.config.title;// 获取标题
   name.innerText = config.title;// 添加标题
   name.onmousedown = e => {
+    // 阻止冒泡
     e.stopPropagation();
     // 置顶 并且调用回调函数
     this.setZindex(appBox, config)

@@ -24,10 +24,10 @@ export default function (width, height, myWindows, fatherId) {
     left = `${(myWindows.offsetWidth - parseInt(width)) / 2}px`;
     top = `${(myWindows.offsetHeight - parseInt(height)) / 2}px`;
   }
-  if (left < 0) {
+  if (parseInt(left) < 0) {
     left = 0
   }
-  if (top < 0) {
+  if (parseInt(top) < 0) {
     top = 0
   }
   return {
