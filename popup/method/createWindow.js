@@ -20,7 +20,7 @@ export default function (fatherId) {
     // 阻止右键默认事件
     this.windowsBox.oncontextmenu = e => {
       e.stopPropagation();
-      e.preventDefault();
+      // e.preventDefault();
     };
     document.body.appendChild(this.windowsBox);
   }
