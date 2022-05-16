@@ -8,7 +8,7 @@ export default function (config) {
   }
   this.id += 1;
   // 得到即将要打开的窗口ID
-  let appid = config.id ? config.id : `win-${this.id}-app`;
+  let appid = config.id ? String(config.id) : `win-${this.id}-app`;
   // 尝试获取该窗口
   let win = document.getElementById(appid);
   // 如果窗口已存在
