@@ -24,7 +24,9 @@
     box-shadow: $boxShadow;
     overflow: hidden;
     border-radius: 5px;
-    resize: both; /* 设置元素的宽度和高度均可调整 */
+    resize: both;
+
+    /* 设置元素的宽度和高度均可调整 */
     .win-title {
       width: 100%;
       display: flex;
@@ -35,7 +37,11 @@
       cursor: move;
 
       .name {
+        max-width: calc(100% - 120px);
         cursor: default;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
       }
 
       .win-icon {
@@ -94,7 +100,7 @@
       padding: 3px;
       background: $hoverBgColor;
 
-      + .min-item {
+      +.min-item {
         margin-left: 3px;
       }
 
