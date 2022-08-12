@@ -1,5 +1,5 @@
 # new-dream
-[官网地址](http://www.bauble.vip/newdream)
+[DEMO](http://demo.bauble.vip)
 ```
 为VUE量身定制的一款弹窗类UI组件,不依赖任何第三方组件库,简单轻便
 ```
