@@ -6,7 +6,7 @@
 # HTML使用
 - 参考`demo`下的使用方法
 
-# VUE3使用
+# VUE2使用
 ## 安装
 ```
 $ npm install -S new-dream-plus
@@ -220,147 +220,146 @@ submitName | 否 | 确认按钮文字 | "确定"
   </div>
 </template>
 
-<script lang="ts" setup>
+<script lang="ts">
 import { Message, MessageBox, Win, Menu } from "new-dream-plus";
 import HelloWorld from "@/components/HelloWorld.vue";
-import { onMounted } from "@vue/runtime-core";
-function showWin() {
-  new Win({
-    id: "win-01",
-    title: "不知道是干什么的窗口",
-    maxBtn: true,
-    miniBtn: true,
-    resize: true,
-    width: "600px",
-    height: "500px",
-    component: HelloWorld,
-    props: {
-      msg: "Hello World",
+export default{
+  mounted(){
+    const menuBox = document.getElementById("menu-box")
+    if(!menuBox){return}
+    new Menu(menuBox, [
+      {
+        id: 0,
+        icon: `<svg t="1664646175246" class="icon" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg"
+  p-id="24565">
+  <path
+    d="M918.673 883H104.327C82.578 883 65 867.368 65 848.027V276.973C65 257.632 82.578 242 104.327 242h814.346C940.422 242 958 257.632 958 276.973v571.054C958 867.28 940.323 883 918.673 883z"
+    fill="#FFE9B4" p-id="24566"></path>
+  <path d="M512 411H65V210.37C65 188.597 82.598 171 104.371 171h305.92c17.4 0 32.71 11.334 37.681 28.036L512 411z"
+    fill="#FFB02C" p-id="24567"></path>
+  <path
+    d="M918.673 883H104.327C82.578 883 65 865.42 65 843.668V335.332C65 313.58 82.578 296 104.327 296h814.346C940.422 296 958 313.58 958 335.332v508.336C958 865.32 940.323 883 918.673 883z"
+    fill="#FFCA28" p-id="24568"></path>
+  </svg>`,
+        name: "新建文件夹",
+        method: function () {
+          console.log("你点击了【新建文件夹】")
+        }
+      },
+      {
+        id: 1,
+        name: "查看(V)",
+        method: function () {
+          console.log("你点击了【查看】")
+        }
+      },
+      {
+        id: 2,
+        name: "排序方式(O)",
+        method: function () {
+          console.log("你点击了【排序方式】")
+        }
+      },
+      {
+        id: 3,
+        name: "刷新",
+        method: function () {
+          console.log("你点击了【刷新】")
+        }
+      },
+      {
+        id: 4,
+        icon: `<svg t="1664646671674" class="icon" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg"
+  p-id="5280" >
+  <path
+    d="M960 80H64c-35.3 0-64 28.6-64 64v576c0 35.3 28.7 64 64 64h312c4.4 0 8 3.6 8 8v84c0 2.2-1.8 4-4 4h-60c-17.7 0-32 14.3-32 32v32h448v-32c0-17.7-14.3-32-32-32h-60c-2.2 0-4-1.8-4-4v-84c0-4.4 3.6-8 8-8h312c35.3 0 64-28.7 64-64V144c0-35.4-28.7-64-64-64zM576 876c0 2.2-1.8 4-4 4H452c-2.2 0-4-1.8-4-4v-52c0-4.4 3.6-8 8-8h112c4.4 0 8 3.6 8 8v52z m384-172c0 8.8-7.2 16-16 16H80c-8.8 0-16-7.2-16-16v-44c0-2.2 1.8-4 4-4h888c2.2 0 4 1.8 4 4v44z"
+    p-id="5281" fill="#1296db"></path>
+  </svg>`,
+        name: "显示设置",
+        method: function () {
+          console.log("你点击了【显示设置】")
+        }
+      },
+      {
+        id: 4,
+        icon: `<svg t="1664646621764" class="icon" viewBox="0 0 1028 1024" version="1.1" xmlns="http://www.w3.org/2000/svg"
+  p-id="4311">
+  <path d="M320 768H0V0h834v64H64v640h256z" fill="#727272" p-id="4312"></path>
+  <path d="M0 832h1024v192H0z" p-id="4313"></path>
+  <path
+    d="M1004.3 83.8c-26.4-26.4-68.9-26.4-95.2 0l-47.6 47.8 95.2 95.5 47.6-47.7c26.3-26.5 26.3-69.2 0-95.6zM812.4 178.8L526.8 465.2l95.2 95.5 285.6-286.4zM384 704l190.4-95.5-95.2-95.5z"
+    fill="#5280C1" p-id="4314"></path>
+  </svg>`,
+        name: "个性化",
+        method: function () {
+          console.log("你点击了【个性化】")
+        }
+      },
+    ])
+  },
+  methods:{
+    showWin() {
+      new Win({
+        id: "win-01",
+        title: "不知道是干什么的窗口",
+        maxBtn: true,
+        miniBtn: true,
+        resize: true,
+        width: "600px",
+        height: "500px",
+        component: HelloWorld,
+        props: {
+          msg: "Hello World",
+        },
+      })
+        .onmounted((e) => {
+          console.log(e);
+        })
+        .onclose(() => {
+          console.log(Win.WinIdMap);
+        });
     },
-  })
-    .onmounted((e) => {
-      console.log(e);
-    })
-    .onclose(() => {
-      console.log(Win.WinIdMap);
-    });
-}
-
-function showSon() {
-  new Win({
-    parentId: "win-01",
-    title: "不知道是干什么的窗口",
-    url: "http://bauble.vip",
-    maxBtn: true,
-    miniBtn: true,
-    resize: true,
-    width: "500px",
-    height: "300px",
-  })
-    .onmounted((e) => {
-      console.log(e);
-    })
-    .onclose(() => {
-      console.log(Win.WinIdMap);
-    });
-}
-
-onMounted(() => {
-  const menuBox = document.getElementById("menu-box")
-  if(!menuBox){return}
-  new Menu(menuBox, [
-    {
-      id: 0,
-      icon: `<svg t="1664646175246" class="icon" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg"
-p-id="24565">
-<path
-  d="M918.673 883H104.327C82.578 883 65 867.368 65 848.027V276.973C65 257.632 82.578 242 104.327 242h814.346C940.422 242 958 257.632 958 276.973v571.054C958 867.28 940.323 883 918.673 883z"
-  fill="#FFE9B4" p-id="24566"></path>
-<path d="M512 411H65V210.37C65 188.597 82.598 171 104.371 171h305.92c17.4 0 32.71 11.334 37.681 28.036L512 411z"
-  fill="#FFB02C" p-id="24567"></path>
-<path
-  d="M918.673 883H104.327C82.578 883 65 865.42 65 843.668V335.332C65 313.58 82.578 296 104.327 296h814.346C940.422 296 958 313.58 958 335.332v508.336C958 865.32 940.323 883 918.673 883z"
-  fill="#FFCA28" p-id="24568"></path>
-</svg>`,
-      name: "新建文件夹",
-      method: function () {
-        console.log("你点击了【新建文件夹】")
-      }
+    showSon() {
+      new Win({
+        parentId: "win-01",
+        title: "不知道是干什么的窗口",
+        url: "http://bauble.vip",
+        maxBtn: true,
+        miniBtn: true,
+        resize: true,
+        width: "500px",
+        height: "300px",
+      })
+        .onmounted((e) => {
+          console.log(e);
+        })
+        .onclose(() => {
+          console.log(Win.WinIdMap);
+        });
     },
-    {
-      id: 1,
-      name: "查看(V)",
-      method: function () {
-        console.log("你点击了【查看】")
-      }
+    showMsg() {
+      new Message("hello world");
     },
-    {
-      id: 2,
-      name: "排序方式(O)",
-      method: function () {
-        console.log("你点击了【排序方式】")
-      }
+    showMsgError() {
+      Message.error("error");
     },
-    {
-      id: 3,
-      name: "刷新",
-      method: function () {
-        console.log("你点击了【刷新】")
-      }
+    showMsgSuccess() {
+      Message.success("success");
     },
-    {
-      id: 4,
-      icon: `<svg t="1664646671674" class="icon" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg"
-p-id="5280" >
-<path
-  d="M960 80H64c-35.3 0-64 28.6-64 64v576c0 35.3 28.7 64 64 64h312c4.4 0 8 3.6 8 8v84c0 2.2-1.8 4-4 4h-60c-17.7 0-32 14.3-32 32v32h448v-32c0-17.7-14.3-32-32-32h-60c-2.2 0-4-1.8-4-4v-84c0-4.4 3.6-8 8-8h312c35.3 0 64-28.7 64-64V144c0-35.4-28.7-64-64-64zM576 876c0 2.2-1.8 4-4 4H452c-2.2 0-4-1.8-4-4v-52c0-4.4 3.6-8 8-8h112c4.4 0 8 3.6 8 8v52z m384-172c0 8.8-7.2 16-16 16H80c-8.8 0-16-7.2-16-16v-44c0-2.2 1.8-4 4-4h888c2.2 0 4 1.8 4 4v44z"
-  p-id="5281" fill="#1296db"></path>
-</svg>`,
-      name: "显示设置",
-      method: function () {
-        console.log("你点击了【显示设置】")
-      }
-    },
-    {
-      id: 4,
-      icon: `<svg t="1664646621764" class="icon" viewBox="0 0 1028 1024" version="1.1" xmlns="http://www.w3.org/2000/svg"
-p-id="4311">
-<path d="M320 768H0V0h834v64H64v640h256z" fill="#727272" p-id="4312"></path>
-<path d="M0 832h1024v192H0z" p-id="4313"></path>
-<path
-  d="M1004.3 83.8c-26.4-26.4-68.9-26.4-95.2 0l-47.6 47.8 95.2 95.5 47.6-47.7c26.3-26.5 26.3-69.2 0-95.6zM812.4 178.8L526.8 465.2l95.2 95.5 285.6-286.4zM384 704l190.4-95.5-95.2-95.5z"
-  fill="#5280C1" p-id="4314"></path>
-</svg>`,
-      name: "个性化",
-      method: function () {
-        console.log("你点击了【个性化】")
-      }
-    },
-  ])
-})
-
-function showMsg() {
-  new Message("hello world");
-}
-function showMsgError() {
-  Message.error("error");
-}
-function showMsgSuccess() {
-  Message.success("success");
-}
-
-function showMsgBox() {
-  new MessageBox("这是一个确认框")
-    .cancel(() => {
-      console.log("点击了取消按钮");
-    })
-    .submit(() => {
-      console.log("点击了确定按钮");
-    });
+    showMsgBox() {
+      new MessageBox("这是一个确认框")
+        .cancel(() => {
+          console.log("点击了取消按钮");
+        })
+        .submit(() => {
+          console.log("点击了确定按钮");
+        });
+    }
+  }
 }
 </script>
 
-<style lang="scss">
+<style>
 .home {
   padding: 20px;
 }
