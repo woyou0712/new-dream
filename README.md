@@ -1,408 +1,372 @@
 # new-dream
-[DEMO](http://demo.bauble.vip)
+[Git地址](https://github.com/woyou0712/new-dream-plus)
 ```
-为VUE量身定制的一款弹窗类UI组件,不依赖任何第三方组件库,简单轻便
+为VUE3量身定制的一款弹窗类UI组件,不依赖任何第三方组件库,简单轻便
 ```
+# HTML使用
+- 参考`demo`下的使用方法
+
+# VUE3使用
 ## 安装
 ```
-npm install new-dream
+$ npm install -S new-dream-plus
 ```
-## 在main.js中引入
-### 引入CSS文件
-```
-import "new-dream/css/main.css";
-```
-### 全部功能引入
-```
-import newDream from "new-dream";
-Vue.use(newDream);
-
-```
-### 也可以按需引入
-#### 弹窗(popup)
-```
-import popup from "new-dream/popup/index.js";
-Vue.prototype.$popup = popup;
-```
-
-
-# 开始使用
-## 弹窗(popup)
-### html(iframe)
-- 基础用法
-```
-<script>
-export default {
-  methods:{
-    showHtml(){
-      this.$popup.html("http://win10.bauble.top")
-    }
-  }
-}
-</script>
-```
-- 自定义扩展
-```
-var config = {
-  id: null, // 自定义ID,同一ID窗口只允许打开最多一个
-  title: "新窗口", // 窗口标题名称
-  theme: "theme", // 主题：css类名
-  url:"http://win10.bauble.top",//需要展示的网页
-  width: "720px",//窗口初始宽度
-  height: "500px",//窗口初始高度
-  showMin: true, // 是否显示 窗口最小化按钮
-  showMax: true, // 是否显示 窗口最大化按钮
-  open(appid) { return appid }, // 打开窗口的 回调函数
-  shut(appid) { return appid }, // 关闭窗口 回调函数
-  top(appid) { return appid }, // 窗口置顶 回调函数
-  min(appid) { return appid }, // 窗口最小化 回调函数
-  max(appid, isMax) { return { appid, isMax } }, // 窗口最大化/复原 回调函数
-}
-this.$popup.html(config)
-```
-### vue(components)
-- 基础用法
-```
-<script>
-import vueComponents from "@/components/vueComponents.vue";
-export default {
-  methods:{
-    showComponents(){
-      this.$popup.vue(vueComponents,props:Object);
-    }
-  }
-};
-</script>
-```
-- 自定义扩展
-```
-var config =  {
-  id: null, // 自定义ID,同一ID窗口只允许打开最多一个
-  title: "新窗口", // 窗口标题名称
-  theme: "theme", // 主题：css类名
-  components: null,//vue组件；
-  props: {},//vue组件内所需要的参数
-  width: "720px",//窗口初始宽度
-  height: "500px",//窗口初始高度
-  showMin: true, // 是否显示 窗口最小化按钮
-  showMax: true, // 是否显示 窗口最大化按钮
-  open(appid) { return appid }, // 打开窗口的 回调函数
-  shut(appid) { return appid }, // 关闭窗口 回调函数
-  top(appid) { return appid }, // 窗口置顶 回调函数
-  min(appid) { return appid }, // 窗口最小化 回调函数
-  max(appid, isMax) { return { appid, isMax } }, // 窗口最大化/复原 回调函数
-}
-this.$popup.vue(config);
-```
-
-### alert(确认提示框)
-- 基础用法
-```
-<script>
-export default {
-  methods:{
-    showAlert(){
-      this.$popup.alert("提示消息!",function(appid){
-        console.log(appid)
-      })
-    }
-  }
-}
-</script>
-```
-- 自定义扩展
-```
-var config = {
-  id: null, // 自定义ID,同一ID窗口只允许打开最多一个
-  title: "新窗口", // 窗口标题名称
-  theme: "theme", // 主题：css类名
-  msg: "提示信息！",//提示信息字符串；
-  align: "right",//按钮对齐方式:left/center/left
-  confirmName: "确定",// 确定按钮文字
-  confirm(appid) { return appid }, // 点击确定回调函数
-}
-this.$popup.alert(config)
-```
-### prompt(输入确认框)
-- 基础用法
-```
-<script>
-export default {
-  methods:{
-    showPrompt(){
-      this.$popup.prompt("提示消息!",function(appid,value){
-        console.log(appid,value)
-      })
-    }
-  }
-}
-</script>
-```
-- 自定义扩展
-```
-var config = {
-  id: null, // 自定义ID,同一ID窗口只允许打开最多一个
-  title: "新窗口", // 窗口标题名称
-  theme: "theme", // 主题：css类名
-  msg: "提示信息！",//提示信息字符串；
-  align: "right",//按钮对齐方式:left/center/left
-  value: "",//弹出输入框默认显示的文字
-  placeholder: "请输入",//弹出输入框默占位符
-  inputType: "text",//输入框类型
-  maxlength: null,//最大输入长度
-  inputReg: null,// 输入框验证正则
-  inputError: "输入格式不规范！",//输入框验证不合格提示
-  confirmName: "确定",// 确定按钮文字
-  confirm(appid,value) { return {appid,value} }, // 点击确定回调函数
-  cancelName: "取消", // 取消按钮文字
-  cancel(appid) { return appid },// 点击取消的回调函数
-}
-this.$popup.prompt(config)
-```
-### msg(轻提示)
-- 基础用法
-```
-<script>
-export default {
-  methods:{
-    showMsg(){
-       this.$popup.msg("测试轻提示");
-    }
-  }
-}
-</script>
-```
-- 自定义扩展
-```
-var config =  {
-  id: null, // 自定义ID,同一ID窗口只允许打开最多一个
-  msg: "提示信息！",//提示信息字符串；
-  msgTime: 2000,// 停留时间；
-}
-this.$popup.msg(config);
-```
-
-### shutWin(关闭窗口)
-- 关闭全部窗口
-```
-<script>
-export default {
-  methods:{
-    // 无需参数
-    shutWin1(){
-      this.$popup.shutWin()
-    },
-    // 也可以传一个回调函数
-    shutWin2(){)
-      this.$popup.shutWin(function(){
-        console.log("执行完成!")
-      })
-    },
-  }
-}
-</script>
-```
-- 关闭指定ID窗口
-```
-// 传入一个id
-this.$popup.shutWin(appid);
-// 第二个参数还可以传一个回调函数
-this.$popup.shutWin(appid,function(){});
-```
-- 关闭指定多个ID窗口
-```
-// 传入一个id数组
-this.$popup.shutWin([appid1,appid2,...])
-// 第二个参数还可以传一个回调函数
-this.$popup.shutWin([appid1,appid2,...],function(){})
-```
-### restore(还原最小化窗口)
-- 还原所有最小化的窗口
-```
-<script>
-export default {
-  methods:{
-    // 无需参数
-    restore(){
-      this.$popup.restore()
-    }
-    // 也可以传一个回调函数
-    restore(){
-      this.$popup.restore(function(){
-        console.log("执行完成!")
-      })
-    }
-  }
-}
-</script>
-```
-- 还原指定ID的最小化窗口
-```
-// 传入一个id (回调函数非必传)
-this.$popup.restore(appid,function(){});
-```
-- 还原多个指定ID的最小化窗口
-```
-// 传入一个id数组 (回调函数非必传)
-this.$popup.restore([appid1,appid2,...],function(){});
-```
-### 窗口嵌套
-- 在窗口内部弹窗
-- 外层窗口必须指定ID
-- 外层窗口必须为根窗口, 嵌套窗口内部不允许再次嵌套窗口
-- 内层弹窗指定属性fatherId:外层窗口ID
-```
-<!-- 外层窗口 -->
-this.$popup.vue({
-  id: "vue-nested",
-  title: "内部嵌套弹窗",
-  components: vueComponent,
-});
-
-<!-- 内层窗口 -->
-this.$popup.html({
-  url: "http://win10.bauble.top",
-  fatherId: "vue-nested",
-});
-```
-### 修改全局默认配置
+## 引入css
 - main.js
 ```
-Vue.prototype.$popup.config.title = "新窗口"; // 打开窗口默认名称
-Vue.prototype.$popup.config.theme = "theme"; // 窗口默认主题类名
-Vue.prototype.$popup.config.showMinList = true; // 是否在屏幕下方显示最小化的窗口列表
-
-
-Vue.prototype.$popup.config.url = "win10.bauble.top"; // 默认iframe地址
-Vue.prototype.$popup.config.components = components:Object;// 默认打开的VUE组件
-Vue.prototype.$popup.config.props = {};// 打开的VUE组件默认传参
-
-Vue.prototype.$popup.config.width = "720px";//html/vue弹窗的默认宽度
-Vue.prototype.$popup.config.height = "500px";//html/vue弹窗的默认高度
-Vue.prototype.$popup.config.showMin = true;//html/vue是否默认显示窗口最小化按钮
-Vue.prototype.$popup.config.showMax = true;//html/vue是否默认显示窗口最大化按钮
-
-Vue.prototype.$popup.config.open = function(appid) { return appid };//打开窗口的默认回调函数
-Vue.prototype.$popup.config.shut = function(appid) { return appid };//关闭窗口的默认回调函数
-Vue.prototype.$popup.config.top = function(appid) { return appid };//窗口置顶的默认回调函数
-Vue.prototype.$popup.config.min = function(appid) { return appid };//窗口最小化的默认回调函数
-Vue.prototype.$popup.config.max = function(appid, isMax) { return { appid, isMax } }, // 窗口最大化回调函数
-
-Vue.prototype.$popup.config.msg = "提示信息！";// 默认提示信息
-Vue.prototype.$popup.config.msgTime = 2000;// msg默认停留时间；
-Vue.prototype.$popup.config.align = "right";//按钮默认显示位置
-Vue.prototype.$popup.config.value = "";//prompt 输入框的默认值
-Vue.prototype.$popup.config.placeholder = "请输入";//prompt 输入框的默认占位符
-Vue.prototype.$popup.config.inputType = "text";//prompt 输入框的默认type
-Vue.prototype.$popup.config.maxlength = null;//prompt 输入框长度限制
-Vue.prototype.$popup.config.inputReg = null;//prompt 输入框验证正则
-Vue.prototype.$popup.config.inputError = "输入格式不规范！";//prompt 输入框数据异常提示(inputReg存在时才生效)
-Vue.prototype.$popup.config.confirmName = "确定";//默认确定按钮名称
-Vue.prototype.$popup.config.confirm = function(appid,value){};//点击确定的默认回调函数(value仅在prompt时有值)
-Vue.prototype.$popup.config.cancelName = "取消";//默认取消按钮名称
-Vue.prototype.$popup.config.cancel = function(appid){};//点击取消的默认回调函数
-
+import "new-dream-plus/dist/index.css"
 ```
 
-
-
-
-
-
-
-
----
-## 右键(Rclick)
-### 绑定页面元素使用
-
-- 基础用法
+## 弹窗
+### `Win`全局配置
+key | 必须| 类型 | 描述 | 默认值
+-- | -- | -- | -- | --
+showMiniList | 否 | boolean | 是否显示最小化列表 | true
 ```
-<template>
-  <div class="win-box" @contextmenu="contextmenu">
-    <h2>右键点击事件触发区域</h2>
-  </div>
-</template>
+import { Win } from "new-dream-plus"
+Win.showMiniList = boolean
+```
+### 弹出窗口
+- `close`方法不支持链式操作
+- 其余所有方法均支持链式操作
+```
+import { Win } from "new-dream-plus"
+const app = new Win(options)
+
+app.onmounted(()=>{
+  // 窗口第一次加载完成回调函数
+})
+app.ontop(()=>{
+  // 窗口置顶回调
+})
+app.onmove(()=>{
+  // 窗口移动结束回调
+})
+app.onmax(()=>{
+  // 窗口最大化切换回调
+})
+app.onmini(()=>{
+  // 窗口最小化切换回调
+})
+app.onclose(()=>{
+  // 窗口关闭回调
+})
+// 窗口置顶
+app.setTop();
+// 切换最小化
+app.setMini();
+// 切换最大化
+app.setMax();
+// 关闭窗口
+app.close();
+```
+#### options
+key | 必须| 类型 | 描述 | 默认值
+-- | -- | -- | -- | --
+url | 是 | string | 要打开的网页地址，与`component`二选一 | "http://www.bauble.vip"
+component | 是 | DefineComponent | 要打开的VUE组件，与`url`二选一 | undefined
+parentId | 否 | string | 父窗口ID | undefined
+id | 否 | string | 要打开的窗口ID | 随机分配ID
+title | 否 | string | 窗口标题 | "新窗口"
+width | 否 | string | 窗口宽 | "800px"
+height | 否 | string | 窗口高 | "600px"
+miniBtn | 否 | boolean | 是否显示最小化按钮 | false
+maxBtn | 否 | boolean | 是否显示最大化按钮 | false
+resize | 否 | boolean | 窗口是否可缩放 | false
+icon | 否 | string/HTMLImageElement | 窗口图标 | svg string
+props | 否 | { [key:string] : any } | 打开VUE组件时，所需要的`props`参数 | undefined
+
+- 若是大开VUE组件，没有指定`options`可选配置项时，会优先使用组件自带的配置项
+- 组件定义默认配置项示例
+```
 <script>
-export default {
-  methods:{
-    contextmenu(event) {
-      // event必传
-      this.$Rclick.click(event);
-    },
-  }
+export default{
+  title:"这是一个窗口",
+  width:"600px",
+  height:"400px"
+  ......
 }
 </script>
-<style scoped>
-.win-box {
-  width: 100%;
-  height: 100vh;
-  position: relative;
-  border: 1px solid #000;
+```
+## 右键菜单
+```
+import { Menu } from "new-dream-plus";
+new Menu(HTMLElement, options[])
+```
+### options
+key | 必须 | 类型 | 描述
+-- | -- | -- | -- 
+id | 是 | string/number | 菜单选项ID 
+icon | 否 | string/HTMLImageElement | 菜单选项图标 
+name | 是 | string | 菜单选项名称 
+method | 是 | function | 菜单选项回调
+
+- 示例
+```
+<div
+  style="
+    width: 600px;
+    height: 600px;
+    border: 1px solid #aaa;
+    margin: 10px auto;
+    text-align: center;
+  "
+  id="menu-box"
+>
+  尝试在此区域内设置点击鼠标右键
+</div>
+
+<script lang="ts" setup>
+onMounted(()=>{
+  const menuBox = document.getElementById
+  if(!menuBox){return}
+  new Menu(menuBox, [
+    {
+      id: 1,
+      name: "查看(V)",
+      method: function () {
+        console.log("你点击了【查看】")
+      }
+    },
+    {
+      id: 2,
+      name: "排序方式(O)",
+      method: function () {
+        console.log("你点击了【排序方式】")
+      }
+    },
+    {
+      id: 3,
+      name: "刷新",
+      method: function () {
+        console.log("你点击了【刷新】")
+      }
+    },
+  ])
+})
+</script>
+```
+
+### 注册为VUE指令
+```
+import Vue from 'vue'
+import "@/new-dream-plus/dist/index.css"
+import NewDreamPlus from "@/new-dream-plus/src/main"
+Vue.use(NewDreamPlus)
+```
+- 示例
+```
+<div
+  style="
+    width: 600px;
+    height: 600px;
+    border: 1px solid #aaa;
+    margin: 10px auto;
+    text-align: center;
+  "
+  v-Rclick="options[]"
+>
+  尝试在此区域内设置点击鼠标右键
+</div>
+```
+
+
+## 轻提示
+```
+import { Message } from "new-dream-plus";
+// 用法1
+new Message("info text");
+// 用法2
+new Message({ msg: "error text", type: "error" })
+// 用法3
+Message.success("success text")
+```
+## 消息确认框
+```
+new MessageBox(string | options)
+  .submit(() => {
+    console.log("继续")
+  }).cancel(() => {
+    console.log("取消")
+  })
+```
+### options
+key | 必须 | 描述 | 默认值
+-- | -- | -- | --
+msg | 是 | 弹窗消息 | "确认消息"
+title | 否 | 弹窗标题 | "提示"
+cancelName | 否 | 取消按钮文字 | "取消"
+submitName | 否 | 确认按钮文字 | "确定"
+
+# VUE示例代码
+```
+<template>
+  <div class="home">
+    <button @click="showWin">窗口1</button>
+    <button @click="showSon">窗口1的子窗口</button>
+    <div id="menu-box" style="
+        width: 600px;
+        height: 600px;
+        border: 1px solid #aaa;
+        margin: 10px auto;
+        text-align: center;
+      ">
+      尝试在此区域内设置点击鼠标右键
+    </div>
+    <button @click="showMsg">info轻消息</button>
+    <button @click="showMsgError">error轻消息</button>
+    <button @click="showMsgSuccess">success轻消息</button>
+    <button @click="showMsgBox">确认提示框</button>
+  </div>
+</template>
+
+<script lang="ts" setup>
+import { Message, MessageBox, Win, Menu } from "new-dream-plus";
+import HelloWorld from "@/components/HelloWorld.vue";
+import { onMounted } from "@vue/runtime-core";
+function showWin() {
+  new Win({
+    id: "win-01",
+    title: "不知道是干什么的窗口",
+    maxBtn: true,
+    miniBtn: true,
+    resize: true,
+    width: "600px",
+    height: "500px",
+    component: HelloWorld,
+    props: {
+      msg: "Hello World",
+    },
+  })
+    .onmounted((e) => {
+      console.log(e);
+    })
+    .onclose(() => {
+      console.log(Win.WinIdMap);
+    });
+}
+
+function showSon() {
+  new Win({
+    parentId: "win-01",
+    title: "不知道是干什么的窗口",
+    url: "http://bauble.vip",
+    maxBtn: true,
+    miniBtn: true,
+    resize: true,
+    width: "500px",
+    height: "300px",
+  })
+    .onmounted((e) => {
+      console.log(e);
+    })
+    .onclose(() => {
+      console.log(Win.WinIdMap);
+    });
+}
+
+onMounted(() => {
+  const menuBox = document.getElementById("menu-box")
+  if(!menuBox){return}
+  new Menu(menuBox, [
+    {
+      id: 0,
+      icon: `<svg t="1664646175246" class="icon" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg"
+p-id="24565">
+<path
+  d="M918.673 883H104.327C82.578 883 65 867.368 65 848.027V276.973C65 257.632 82.578 242 104.327 242h814.346C940.422 242 958 257.632 958 276.973v571.054C958 867.28 940.323 883 918.673 883z"
+  fill="#FFE9B4" p-id="24566"></path>
+<path d="M512 411H65V210.37C65 188.597 82.598 171 104.371 171h305.92c17.4 0 32.71 11.334 37.681 28.036L512 411z"
+  fill="#FFB02C" p-id="24567"></path>
+<path
+  d="M918.673 883H104.327C82.578 883 65 865.42 65 843.668V335.332C65 313.58 82.578 296 104.327 296h814.346C940.422 296 958 313.58 958 335.332v508.336C958 865.32 940.323 883 918.673 883z"
+  fill="#FFCA28" p-id="24568"></path>
+</svg>`,
+      name: "新建文件夹",
+      method: function () {
+        console.log("你点击了【新建文件夹】")
+      }
+    },
+    {
+      id: 1,
+      name: "查看(V)",
+      method: function () {
+        console.log("你点击了【查看】")
+      }
+    },
+    {
+      id: 2,
+      name: "排序方式(O)",
+      method: function () {
+        console.log("你点击了【排序方式】")
+      }
+    },
+    {
+      id: 3,
+      name: "刷新",
+      method: function () {
+        console.log("你点击了【刷新】")
+      }
+    },
+    {
+      id: 4,
+      icon: `<svg t="1664646671674" class="icon" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg"
+p-id="5280" >
+<path
+  d="M960 80H64c-35.3 0-64 28.6-64 64v576c0 35.3 28.7 64 64 64h312c4.4 0 8 3.6 8 8v84c0 2.2-1.8 4-4 4h-60c-17.7 0-32 14.3-32 32v32h448v-32c0-17.7-14.3-32-32-32h-60c-2.2 0-4-1.8-4-4v-84c0-4.4 3.6-8 8-8h312c35.3 0 64-28.7 64-64V144c0-35.4-28.7-64-64-64zM576 876c0 2.2-1.8 4-4 4H452c-2.2 0-4-1.8-4-4v-52c0-4.4 3.6-8 8-8h112c4.4 0 8 3.6 8 8v52z m384-172c0 8.8-7.2 16-16 16H80c-8.8 0-16-7.2-16-16v-44c0-2.2 1.8-4 4-4h888c2.2 0 4 1.8 4 4v44z"
+  p-id="5281" fill="#1296db"></path>
+</svg>`,
+      name: "显示设置",
+      method: function () {
+        console.log("你点击了【显示设置】")
+      }
+    },
+    {
+      id: 4,
+      icon: `<svg t="1664646621764" class="icon" viewBox="0 0 1028 1024" version="1.1" xmlns="http://www.w3.org/2000/svg"
+p-id="4311">
+<path d="M320 768H0V0h834v64H64v640h256z" fill="#727272" p-id="4312"></path>
+<path d="M0 832h1024v192H0z" p-id="4313"></path>
+<path
+  d="M1004.3 83.8c-26.4-26.4-68.9-26.4-95.2 0l-47.6 47.8 95.2 95.5 47.6-47.7c26.3-26.5 26.3-69.2 0-95.6zM812.4 178.8L526.8 465.2l95.2 95.5 285.6-286.4zM384 704l190.4-95.5-95.2-95.5z"
+  fill="#5280C1" p-id="4314"></path>
+</svg>`,
+      name: "个性化",
+      method: function () {
+        console.log("你点击了【个性化】")
+      }
+    },
+  ])
+})
+
+function showMsg() {
+  new Message("hello world");
+}
+function showMsgError() {
+  Message.error("error");
+}
+function showMsgSuccess() {
+  Message.success("success");
+}
+
+function showMsgBox() {
+  new MessageBox("这是一个确认框")
+    .cancel(() => {
+      console.log("点击了取消按钮");
+    })
+    .submit(() => {
+      console.log("点击了确定按钮");
+    });
+}
+</script>
+
+<style lang="scss">
+.home {
+  padding: 20px;
+}
+
+button+button {
+  margin-left: 10px;
 }
 </style>
 ```
-- 自定义扩展
-
-```
-var config = {
-  backgroundColor: "#FFF",//菜单背景色
-  // 菜单列表
-  menus: [
-    { label: "全屏", value: 1, color: "#444", fontWeight: 900 },
-    { label: "退出全屏", value: 2, color: "#444" },
-    { label: "关于", value: 3, color: "#d00" },
-  ],
-  open() { return },//打开菜单成功回调函数
-  //点击菜单回调函数
-  click(value) {
-    if (value == 1) {
-      console.log("全屏")
-    } else if (value == 2) {
-      console.log("退出全屏")
-    } else if (value == 3) {
-      console.log("关于")
-    }
-  },
-  shut() { return },//关闭菜单回调函数
-}
-this.$Rclick.click(event,config);
-```
-### 手动关闭菜单
-```
-<script>
-export default {
-  methods: {
-    shutMenus() {
-      this.$Rclick.shutMenus();
-    },
-  },
-};
-</script>
-```
-### 修改全局默认配置
-- main.js
-```
-Vue.prototype.$Rclick.config.backgroundColor = "#FFF";//默认菜单背景色
-//默认菜单列表
-Vue.prototype.$Rclick.config.menus = [
-  { label: "全屏", value: 963280680, color: "#444", fontWeight: 900 },
-  { label: "退出全屏", value: 707282658, color: "#444" },
-  { label: "关于", value: 850674935, color: "#d00" },
-];
-Vue.prototype.$Rclick.config.open = function(){};//打开菜单成功默认回调函数
-Vue.prototype.$Rclick.config.click = function(value){};//点击菜单选项的默认回调函数
-Vue.prototype.$Rclick.config.shut = function(){};//关闭菜单时的默认回调函数
-
-
-```
-
-
-
-
-
-
-
-
-
-
-
