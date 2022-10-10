@@ -198,6 +198,36 @@ title | 否 | 弹窗标题 | "提示"
 cancelName | 否 | 取消按钮文字 | "取消"
 submitName | 否 | 确认按钮文字 | "确定"
 
+## 截图
+```
+<template>
+  <div class="home">
+    <button @click="slictWin">截图</button>
+    <img :src="imgdata">
+  </div>
+</template>
+<script>
+import { Screen } from "new-dream-plus"
+
+export default{
+  data(){
+    return {
+      imgdata:""
+    }
+  },
+  methods:{
+    slictWin() {
+      new Screen().start().onsuccess((data) => {
+        console.log(data)
+        if (data) {
+          imgdata.value = data
+        }
+      })
+    }
+  }
+}
+</script>
+```
 # VUE示例代码
 ```
 <template>
