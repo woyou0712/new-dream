@@ -9,7 +9,7 @@
 # VUE2使用
 ## 安装
 ```
-$ npm install -S new-dream-plus
+$ npm install -S new-dream
 ```
 ## 引入css
 - main.js
