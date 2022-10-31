@@ -24,7 +24,18 @@ key | 必须| 类型 | 描述 | 默认值
 showMiniList | 否 | boolean | 是否显示最小化列表 | true
 ```
 import { Win } from "new-dream-plus"
-Win.showMiniList = boolean
+// 不显示最小化列表
+Win.showMiniList = false
+// 其他默认配置项
+import { defaultConfig } from 'new-dream/src/Win';
+import createElement from 'new-dream/src/utils/createElement';
+import img from "@/assets/logo/logo.png"
+const logo = createElement({ name: "img" });
+logo.setAttribute("src", img)
+// 修改弹窗默认logo
+defaultConfig.icon = logo
+// 修改弹窗默认标题
+defaultConfig.title = "财合税"
 ```
 ### 弹出窗口
 - `close`方法不支持链式操作
