@@ -1,4 +1,4 @@
-import { DirectiveBinding } from "vue";
+import { DirectiveBinding, VueConstructor } from "vue";
 import { dirSvg, disSvg, indSvg } from "../svg/button"
 import createElement from "../utils/createElement"
 import { MenuItem, MenuSattus } from "./menu.d"
@@ -125,7 +125,7 @@ export class Menu {
   }
 }
 
-export function installMenu(Vue) {
+export function installMenu(Vue: VueConstructor) {
   Vue.directive("Rclick", (el: HTMLElement, options: DirectiveBinding<MenuItem[]>) => {
     new Menu(el, options.value)
   });

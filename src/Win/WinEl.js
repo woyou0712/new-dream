@@ -1,6 +1,5 @@
 import createElement from "../utils/createElement";
 import { closeSvg, maxSvg, unmaxSvg, miniSvg } from "../svg/button";
-import { Win } from ".";
 import Vue from "vue";
 var WinEl = (function () {
     function WinEl(config) {
@@ -47,9 +46,6 @@ var WinEl = (function () {
         if (config.height) {
             this.box.style.height = config.height;
         }
-        var _a = this.__init__position(config), top = _a.top, left = _a.left;
-        this.box.style.top = "".concat(top, "px");
-        this.box.style.left = "".concat(left, "px");
     };
     WinEl.prototype.__init__correlation = function () {
         this.title.appendChild(this.icon);
@@ -64,24 +60,24 @@ var WinEl = (function () {
         this.content.appendChild(this.miniEl);
         this.box.appendChild(this.content);
     };
-    WinEl.prototype.__init__position = function (config) {
+    WinEl.prototype.setPosition = function (config) {
         var _a, _b;
         var top = 0, left = 0;
         var reg = /[^\d]/g;
         var width = (_a = config.width) === null || _a === void 0 ? void 0 : _a.replace(reg, ""), height = (_b = config.height) === null || _b === void 0 ? void 0 : _b.replace(reg, "");
-        if (config.parentId && Win.WinIdMap[config.parentId]) {
-            var parentWin = Win.WinIdMap[config.parentId];
-            if (parentWin.__Els) {
-                this.box.style['position'] = 'absolute';
-                top = (parentWin.__Els.content.offsetHeight - Number(height)) / 2;
-                left = (parentWin.__Els.content.offsetWidth - Number(width)) / 2;
-                return { top: top < 0 ? 0 : top, left: left < 0 ? 0 : left };
-            }
+        var parentElement = this.box.parentElement;
+        if (parentElement === document.body) {
+            this.box.style['position'] = 'fixed';
+            top = (window.innerHeight - Number(height)) / 2;
+            left = (window.innerWidth - Number(width)) / 2;
         }
-        this.box.style['position'] = 'fixed';
-        top = (window.innerHeight - Number(height)) / 2;
-        left = (window.innerWidth - Number(width)) / 2;
-        return { top: top < 0 ? 0 : top, left: left < 0 ? 0 : left };
+        else if (parentElement) {
+            this.box.style['position'] = 'absolute';
+            top = (parentElement.offsetHeight - Number(height)) / 2;
+            left = (parentElement.offsetWidth - Number(width)) / 2;
+        }
+        this.box.style.top = "".concat(top < 0 ? 0 : top, "px");
+        this.box.style.left = "".concat(left < 0 ? 0 : left, "px");
     };
     WinEl.prototype.setContent = function (config) {
         if (config.component) {
