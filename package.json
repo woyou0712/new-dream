@@ -1,6 +1,6 @@
 {
   "name": "new-dream",
-  "version": "2.2.21",
+  "version": "2.3.0",
   "description": "The pop-up UI component of Vue2",
   "main": "src/main",
   "scripts": {
