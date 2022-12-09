@@ -98,6 +98,9 @@ var Win = (function () {
             parentWin.children[this.id] = this;
         }
         else {
+            if (!Win.defaultContentBox || !Win.defaultContentBox.nodeName) {
+                Win.defaultContentBox = document.body;
+            }
             Win.defaultContentBox.appendChild(this.elements.box);
         }
         this.elements.setPosition(this.__config);
@@ -270,7 +273,6 @@ var Win = (function () {
     Win.Shade = createElement({ id: "new-windows-shade" });
     Win.zIndex = 0;
     Win.showMiniList = true;
-    Win.defaultContentBox = document.body;
     return Win;
 }());
 export { Win };
