@@ -430,6 +430,7 @@ body .new-windows-mini-list-box .new-windows-box.mini .new-windows-content {
   right: 0;
   bottom: 0;
   display: flex;
+  z-index: 99999;
 }
 .new-window-loading-box .new-window-loading-content {
   width: 500px;
