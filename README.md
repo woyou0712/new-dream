@@ -19,6 +19,11 @@
 ```
 new Menu(el: HTMLElement | HTMLElement[],options)
 ```
+## 2.4.*
+- 新增`Loading`类
+```
+new Loading(options)
+```
 # HTML使用
 - 参考`demo`下的使用方法
 
@@ -260,6 +265,36 @@ export default{
 }
 </script>
 ```
+## Loading
+```
+<template>
+  <div class="home">
+    <button @click="loading">加载</button>
+  </div>
+</template>
+<script>
+import {  Loading } from "@/new-dream/src/main";
+
+export default{
+  methods:{
+    loading() {
+      const l = new Loading([options]);
+      setTimeout(() => {
+        l.close();
+      }, 2000);
+    },
+  }
+}
+</script>
+```
+### options:Object|string（非必须）
+key | 必须 | 描述 | 默认值
+-- | -- | -- | --
+text | 否 | 文字提示 | "拼命加载中..."
+type | 否 | 类型("default" | "skip" | "heartbeat") | "default"
+backgroundColor | 否 | 背景颜色 | "rgba(0,0,0,.8)"
+color | 否 | 文字颜色 | "#E6A23C"
+
 # VUE示例代码
 ```
 <template>

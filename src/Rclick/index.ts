@@ -161,7 +161,7 @@ export class Menu {
 
 
 export function installMenu(Vue: VueConstructor) {
-  Vue.directive("Rclick", (el: HTMLElement, options: DirectiveBinding<MenuItem[]>) => {
+  Vue.directive("Rclick", (el, options) => {
     new Menu(el, options.value)
   });
 }
