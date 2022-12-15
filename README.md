@@ -274,11 +274,11 @@ export default{
 </template>
 <script>
 import {  Loading } from "@/new-dream/src/main";
-
+const l = new Loading();
 export default{
   methods:{
     loading() {
-      const l = new Loading([options]);
+      l.satrt([options])
       setTimeout(() => {
         l.close();
       }, 2000);
