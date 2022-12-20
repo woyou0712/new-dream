@@ -279,9 +279,16 @@ export default{
   methods:{
     loading() {
       l.satrt([options])
-      setTimeout(() => {
-        l.close();
-      }, 2000);
+      let n = 0;
+      let t = setInterval(() => {
+        if (n > 100) {
+          l.close();
+          clearInterval(t);
+          return;
+        }
+        l.update(`进度：${n}%`);
+        n += 5;
+      }, 500);
     },
   }
 }
@@ -291,6 +298,7 @@ export default{
 key | 必须 | 描述 | 默认值
 -- | -- | -- | --
 text | 否 | 文字提示 | "拼命加载中..."
+textAnimation | 否 | 文字动画 | false
 type | 否 | 类型("default" | "skip" | "heartbeat") | "default"
 backgroundColor | 否 | 背景颜色 | "rgba(0,0,0,.8)"
 color | 否 | 文字颜色 | "#E6A23C"
